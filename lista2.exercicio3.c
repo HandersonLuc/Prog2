@@ -9,9 +9,10 @@ de Fibonacci, o programa deve ter a seguinte saída:
 1 1 2 3 5 8*/
 
 #include <stdio.h>
-#define n 6 /*Fiz por definição pq o exercicio não falou que o numero deve ser indicado por um usuario*/    
-
 int main() {
+    int n;
+    printf("Digite o numero de termos da serie de Fibonacci: ");
+    scanf("%d", &n); // Lê o número de termos desejados
     int fib[n];
     fib[0] = 1; // Primeiro termo
     fib[1] = 1; // Segundo termo
