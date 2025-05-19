@@ -17,15 +17,11 @@ int main()
 }
 
 void treze(char *s1, char *s2){
-    int a=strcmp(s1,s2);
-    if(a>=0){
-        s1[strlen(s1)]=' ';
+        s1[strlen(s1)]= '2';
         strcat(s1,s2);
-        printf("%s\n",s1);
-    }
-    else{
-        s2[strlen(s2)]=' ';
-        strcat(s2,s1);
-        printf("%s\n",s2);
-    }
+        s1=strtok(s1," ,.-");
+        while(s1!=NULL){
+            printf("%s\n",s1);
+            s1=strtok(NULL," ,.-");
+        }
 }
