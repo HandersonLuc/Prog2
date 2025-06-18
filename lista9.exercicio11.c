@@ -7,17 +7,16 @@
 // Definições de tipos
 typedef struct Aluno {
     int matricula;
-    float *vNotas; // Armazena as 5 notas de um aluno ao longo de um ano
+    float *vNotas; 
     char nome[100];
 } Aluno;
 
 typedef struct Materia {
-    Aluno *V;            // Vetor de alunos
-    float media[NUM_PROVAS]; // Média por prova
-    int nAlunos;         // Número de alunos
+    Aluno *V;           
+    float media[NUM_PROVAS]; 
+    int nAlunos;         
 } Materia;
 
-// (A) Preenche os dados de um aluno
 Aluno* fillAluno() {
     Aluno* novo = (Aluno*)malloc(sizeof(Aluno));
     if (!novo) {
@@ -33,7 +32,7 @@ Aluno* fillAluno() {
 
     printf("Digite o nome do aluno: ");
     fgets(novo->nome, 100, stdin);
-    novo->nome[strcspn(novo->nome, "\n")] = '\0'; // Remove \n
+    novo->nome[strcspn(novo->nome, "\n")] = '\0'; 
 
     printf("Digite a matrícula do aluno: ");
     scanf("%d", &novo->matricula);
@@ -44,11 +43,11 @@ Aluno* fillAluno() {
         scanf("%f", &novo->vNotas[i]);
     }
 
-    getchar(); // Limpa o \n do buffer após scanf
+    getchar(); 
     return novo;
 }
 
-// (B) Preenche uma matéria com vários alunos
+// (B)
 Materia* fillMateria(int numAlunos) {
     Materia* m = (Materia*)malloc(sizeof(Materia));
     if (!m) {
@@ -68,13 +67,13 @@ Materia* fillMateria(int numAlunos) {
         printf("\n--- Aluno %d ---\n", i + 1);
         Aluno* a = fillAluno();
         m->V[i] = *a;
-        free(a); // Libera estrutura temporária, mas mantém os dados copiados
+        free(a); 
     }
 
     return m;
 }
 
-// (C) Calcula a média de cada prova para a matéria
+// (C) 
 void mediaMateria(Materia *m1) {
     for (int i = 0; i < NUM_PROVAS; i++) {
         float soma = 0.0;
@@ -85,7 +84,7 @@ void mediaMateria(Materia *m1) {
     }
 }
 
-// (D) Mostra os dados da matéria e alunos
+// (D) 
 void mostraMateria(Materia *m1) {
     printf("\n==== Alunos Matriculados ====\n");
     for (int i = 0; i < m1->nAlunos; i++) {
@@ -105,7 +104,6 @@ void mostraMateria(Materia *m1) {
     }
 }
 
-// Libera memória
 void liberaMateria(Materia* m1) {
     for (int i = 0; i < m1->nAlunos; i++) {
         free(m1->V[i].vNotas);
@@ -114,13 +112,13 @@ void liberaMateria(Materia* m1) {
     free(m1);
 }
 
-// (E) Programa principal
+// (E)
 int main() {
     int numAlunos;
 
     printf("Digite o número de alunos na matéria: ");
     scanf("%d", &numAlunos);
-    getchar(); // Limpa \n do buffer
+    getchar(); 
 
     Materia* minhaMateria = fillMateria(numAlunos);
     mediaMateria(minhaMateria);
